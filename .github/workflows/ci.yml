@@ -28,16 +28,23 @@ jobs:
           pip install -r requirements.txt
 
       - name: Verify dependencies
-        run: |
-          echo "Verifying installed dependencies..."
+        run:
+
+          echo ""
+          echo "Checking Flask..."
+          python -c "import flask; print('✅ Flask installed - version:', flask.__version__)"
+
+          echo ""
+          echo "Checking Pytest..."
+          python -c "import pytest; print('✅ Pytest installed - version:', pytest.__version__)"
+
+          echo ""
+          echo "Checking dependency compatibility..."
           pip check
 
-          if [ $? -eq 0 ]; then
-            echo "✅ Dependencies installed correctly"
-          else
-            echo "❌ Dependency verification failed"
-            exit 1
-          fi
+          echo ""
+          echo "✅ All dependencies verified successfully"
+        
 
       - name: Run tests
         run: |
