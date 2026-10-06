@@ -23,8 +23,21 @@ jobs:
 
       - name: Install dependencies
         run: |
+          echo "Installing Python dependencies..."
           python -m pip install --upgrade pip
           pip install -r requirements.txt
+
+      - name: Verify dependencies
+        run: |
+          echo "Verifying installed dependencies..."
+          pip check
+
+          if [ $? -eq 0 ]; then
+            echo "✅ Dependencies installed correctly"
+          else
+            echo "❌ Dependency verification failed"
+            exit 1
+          fi
 
       - name: Run tests
         run: |
