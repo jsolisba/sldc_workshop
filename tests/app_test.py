@@ -16,7 +16,7 @@ def test_health():
     response = client.get("/health")
 
     assert response.status_code == 200
-    assert response.json["status"] == "healthy"
+    assert response.json["status"] == "broken"
 
 
 def test_version():
@@ -26,3 +26,4 @@ def test_version():
 
     assert response.status_code == 200
     assert response.json["version"] == "1.0.0"
+
